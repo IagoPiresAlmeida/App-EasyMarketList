@@ -100,6 +100,7 @@ const styles = StyleSheet.create({
   compraItem: {
     fontSize: 16,
     flex: 1,
+    margin:30
   },
 });
 
