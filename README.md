@@ -1,4 +1,4 @@
-# listaDeCompras
+# EasyMarketList
 ## Descrição:
 
 O EasyMarketList é um aplicativo de lista de compras que foi desenvolvido para facilitar a rotina de compras dos usuários. Ele permite que os usuários criem listas de compras personalizadas de forma simples e intuitiva. A lista é atualizada automaticamente à medida que os itens são adicionados ou excluídos. Além disso, o aplicativo possui uma barra de pesquisa que facilita a verificação se um item já foi adicionado à lista. O aplicativo também possui uma calculadora que permite aos usuários atualizarem o valor total da compra em tempo real, adicionando ou subtraindo o valor dos itens.
@@ -12,7 +12,9 @@ O EasyMarketList é um aplicativo de lista de compras que foi desenvolvido para 
 
 ## Como testar o aplicativo:
 
-- Precisa do yarn e Node instalados no pc
+- Precisa do yarn e NodeJS instalados no pc
+- Ao clonar o repositorio utilize o comando **Yarn** no cmd com o endereço do repositorio
+- Utilizar o comando **yarn start** para iniciar a execução do app e escanear o QR code do **EXPO**
 
 ## Tecnologias utilizadas:
 
@@ -21,5 +23,4 @@ O EasyMarketList é um aplicativo de lista de compras que foi desenvolvido para 
 
 ## Autores
 
-- Emanuel Victor 
-- Iago Pires
+- Emanuel Victor e Iago Pires
