@@ -1,14 +1,5 @@
 import React, { useState } from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  Image,
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  FlatList,
-} from 'react-native';
+import { StyleSheet, Image, View, Text, TextInput, SafeAreaView, TouchableOpacity, FlatList} from 'react-native';
 import { Feather, Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -20,6 +11,7 @@ const App = () => {
   const [quantity, setQuantity] = useState('');
   const [total, setTotal] = useState(0);
 
+  {/*Função do botão de adicionar um item na lista de compras*/}
   const handleAddCompra = () => {
     if (compras.trim()) {
       setComprasList([...comprasList, { id: Date.now(), text: compras }]);
@@ -28,11 +20,13 @@ const App = () => {
     }
   };
 
+  {/*Função do botão de deletar um item na lista de compras*/}
   const handleDeleteCompra = (id) => {
     setComprasList(comprasList.filter((compra) => compra.id !== id));
     setFilteredCompras(filteredCompras.filter((compra) => compra.id !== id));
   };
 
+  {/*Função do SearchBar*/}
   const handleFilter = (text) => {
     setFilteredCompras(
       comprasList.filter((compra) =>
@@ -41,9 +35,11 @@ const App = () => {
     );
   };
 
+  {/*Valor maximo e minimo exibido*/}
   const maxTotal = 999999;
   const minTotal = 0;
 
+  {/*Função de soma*/}
   const handleCalculation = () => {
     const result = parseFloat(value) * parseFloat(quantity);
     const newTotal = total + result;
@@ -58,6 +54,7 @@ const App = () => {
     setQuantity('');
   };
 
+  {/*Função de subtração*/}
   const handleSubtraction = () => {
     const result = parseFloat(value) * parseFloat(quantity);
     const newTotal = total - result;
@@ -72,6 +69,7 @@ const App = () => {
     setQuantity('');
   };
   
+  {/*Renderiza o item na lista*/}
   const renderItem = ({ item }) => (
     <View style={styles.compraItemContainer}>
       <Text style={styles.compraItem}>{item.text}</Text>
@@ -82,10 +80,14 @@ const App = () => {
   );
   
   return (
-    <SafeAreaView style={styles.container}>
+<SafeAreaView style={styles.container}>
+
+  {/*Logo marca*/}
   <View style={styles.headerlogo}>
     <Image source={require('./assets/marketlist.png')} />
   </View>
+
+  {/*Header com text input e com a soma do produta a lista*/}
   <View style={styles.header}>
     <TextInput
       style={styles.input}
@@ -98,6 +100,7 @@ const App = () => {
     </TouchableOpacity>
   </View>
 
+  {/*Barra de pesquisa*/}
   <View style={styles.searchContainer}>
     <Feather name="search" size={20} color="black" />
     <TextInput
@@ -107,16 +110,23 @@ const App = () => {
     />
   </View>
 
-  <View style={styles.line} />
+  {/*Separação entre áreas de inputs e lista*/}
+  <View style={styles.line}/>
+
+  {/*Item da lista*/}
   <FlatList
     data={filteredCompras}
     renderItem={renderItem}
     keyExtractor={(item) => item.id.toString()}
     contentContainerStyle={styles.comprasList}
   />
-  <View style={styles.line} />
 
+  {/*Separação entre áreas de inputs e lista*/}
+  <View style={styles.line}/>
+
+  
   <View style={styles.calculatorContainer}>
+    {/*Inputs de valor e quantidade*/}
     <View style={styles.inputsContainer}>
       <TextInput
         style={styles.input}
@@ -125,7 +135,9 @@ const App = () => {
         keyboardType="numeric"
         placeholder="Valor"
       />
+
       <Text>X</Text>
+
       <TextInput
         style={styles.input}
         value={quantity}
@@ -134,7 +146,9 @@ const App = () => {
         placeholder="Quantidade"
       />
     </View>
-    <View style={styles.calculobox}>
+
+    {/*Botões de adição e subtração*/}
+    <View style={styles.calculobox}>      
       <TouchableOpacity
         style={styles.calcButton}
         onPress={handleCalculation}
@@ -142,6 +156,7 @@ const App = () => {
       >
         <Text style={styles.calcText}>Somar</Text>
       </TouchableOpacity>
+
       <TouchableOpacity
         style={styles.calcButton}
         onPress={handleSubtraction}
@@ -150,10 +165,10 @@ const App = () => {
         <Text style={styles.calcText}>Subtrair</Text>
       </TouchableOpacity>
 
+      {/*Texto de valor total da compra*/}
       <Text style={styles.total}>Total da compra: R$ {total.toFixed(2).slice(0, 6)}</Text>
     </View>
   </View>
-</View>
 
 </SafeAreaView>
 );
@@ -172,8 +187,7 @@ const styles = StyleSheet.create({
     elevation: 10,
     shadowColor:'black',
     shadowOpacity: 5,
-    shadowOffset:{width:1,height:2},
-    
+    shadowOffset:{width:1,height:2},    
   },
   headerlogo:{
     alignItems:'center',
@@ -194,35 +208,28 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginTop:-4,
     marginBottom: 10,
-    borderColor: '#ccc',
-    
+    borderColor: '#ccc',    
   },
   searchInput:{
     marginStart: 5,
     marginRight:100,
-
   },
   line:{
   height:5,
   backgroundColor: '#0080ff',
   marginHorizontal: 20,
-  borderWidth: 1,
   borderRadius: 5,
-  borderColor: '#ccc',
   },
   addButton: {
     backgroundColor: '#0080ff',
     borderRadius: 5,
     padding: 8,
     justifyContent: 'center',
-    borderWidth: 1,
     borderRadius: 5,
-    borderColor: '#ccc',
   },
   comprasList: {
     paddingHorizontal: 20,
     paddingVertical: 10,
-
   },
   compraItemContainer: {
     flexDirection: 'row',
@@ -251,11 +258,8 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   calcButton:{
-  
-    borderWidth: 1,
     height: 40,
     width:70,
-    borderColor: '#ccc',
     backgroundColor: '#0080ff',
     marginRight:10,
     borderRadius: 5, 
@@ -280,8 +284,7 @@ const styles = StyleSheet.create({
     marginHorizontal:20,
     marginBottom:20,
     justifyContent: 'space-between',
-    alignItems: 'center',
-    
+    alignItems: 'center',    
   }
 });
 
